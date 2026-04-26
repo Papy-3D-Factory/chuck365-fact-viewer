@@ -20,7 +20,7 @@ if (defined('WP_DEBUG') && WP_DEBUG) {
 
 define('CHUCK365_VERSION', $c365_version);
 
-class C365_Fact_Viewer_Plugin {
+class Chuck365_Fact_Viewer_Plugin {
 
     public function __construct() {
         add_action('init', [$this, 'i18n']);
@@ -330,4 +330,4 @@ class C365_Fact_Viewer_Plugin {
         <?php return ob_get_clean() ?: '';
     }
 } 
-add_action('plugins_loaded', function() { new C365_Fact_Viewer_Plugin(); });
+add_action('plugins_loaded', function() { new Chuck365_Fact_Viewer_Plugin(); });
