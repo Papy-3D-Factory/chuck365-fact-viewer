@@ -1,6 +1,3 @@
-/**
- * Chuck365 - View Script
- */
 document.addEventListener('DOMContentLoaded', () => {
     const boxes = document.querySelectorAll('.cn-main-box');
 
@@ -9,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const nonce = box.getAttribute('data-nonce');
         const contentArea = box.querySelector('.cn-content-area');
 
-        // Exemple de fonction de rafraîchissement isolée par bloc
         const refreshFact = async () => {
             const formData = new FormData();
             formData.append('action', 'chuck365_get_fact');

@@ -2,23 +2,24 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
     "name": "chuck365/viewer",
-    "title": "Chuck365 Fact Viewer",
+    "title": "Chuck Norris Fact du jour",
     "category": "widgets",
     "icon": "superhero",
-    "description": "Affiche un fait de Chuck Norris chaque jour.",
-    "textdomain": "chuck365-fact-viewer",
-    "version": "2.0.3",
+    "description": "Affiche un fait de Chuck Norris chaque jour via l'API officielle.",
+    "textdomain": "papy3d-fact-viewer-for-chuck365",
+    "version": "2.0.4",
     "supports": {
         "html": false,
         "anchor": true
     },
     "attributes": {
-        "borderColor":   { "type": "string" },
-        "bgColor":       { "type": "string" },
-        "textColor":     { "type": "string" },
-        "title":         { "type": "string" },
+        "borderColor":   { "type": "string", "default": "#f39c12" },
+        "bgColor":       { "type": "string", "default": "#ffffff" },
+        "textColor":     { "type": "string", "default": "#222222" },
+        "title":         { "type": "string", "default": "Chuck Norris Fact du jour" },
         "showCopyright": { "type": "boolean", "default": true }
     },
     "style": "chuck365-style",
-    "editorScript": "chuck365-editor-script"
+    "editorScript": "chuck365-editor-script",
+    "viewScript": "chuck365-view-script"
 }

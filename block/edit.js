@@ -10,16 +10,13 @@
     var Fragment = wp.element.Fragment;
     var __ = wp.i18n.__;
 
-    // Valeurs par défaut injectées depuis l'admin PHP via wp_localize_script
-    var defaults = window.chuck365Defaults || {};
+    var defaults = chuck365Defaults.borderColor || {};
 
     registerBlockType('chuck365/viewer', {
         edit: function (props) {
             var attributes = props.attributes;
             var setAttributes = props.setAttributes;
 
-            // block.json sans "default" → attributs undefined pour un nouveau bloc
-            // On prend alors les réglages admin, puis le fallback codé en dur
             var border = attributes.borderColor || defaults.borderColor || '#f39c12';
             var bg     = attributes.bgColor     || defaults.bgColor     || '#ffffff';
             var color  = attributes.textColor   || defaults.textColor   || '#222222';
