@@ -10,9 +10,9 @@
     var Fragment = wp.element.Fragment;
     var __ = wp.i18n.__;
 
-    var defaults = window.chuck365Defaults || {};
+    var defaults = window.papyfaviDefaults || {};
 
-    registerBlockType('chuck365/viewer', {
+    registerBlockType('papyfavi/viewer', {
         edit: function (props) {
             var attributes = props.attributes;
             var setAttributes = props.setAttributes;
@@ -33,29 +33,29 @@
 
             return el(Fragment, {},
                 el(InspectorControls, {},
-                    el(PanelBody, { title: __('Configuration Style', 'chuck365-fact-viewer') },
+                    el(PanelBody, { title: __('Configuration Style', 'papy3d-fact-viewer-for-chuck365') },
                         el(TextControl, {
-                            label: __('Titre', 'chuck365-fact-viewer'),
+                            label: __('Titre', 'papy3d-fact-viewer-for-chuck365'),
                             value: title,
                             onChange: function (val) { setAttributes({ title: val }); }
                         }),
-                        el('p', {}, __('Couleur de Bordure', 'chuck365-fact-viewer')),
+                        el('p', {}, __('Couleur de Bordure', 'papy3d-fact-viewer-for-chuck365')),
                         el(ColorPalette, {
                             value: border,
                             onChange: function (val) { setAttributes({ borderColor: val }); }
                         }),
-                        el('p', {}, __('Couleur de Fond', 'chuck365-fact-viewer')),
+                        el('p', {}, __('Couleur de Fond', 'papy3d-fact-viewer-for-chuck365')),
                         el(ColorPalette, {
                             value: bg,
                             onChange: function (val) { setAttributes({ bgColor: val }); }
                         }),
-                        el('p', {}, __('Couleur du Texte', 'chuck365-fact-viewer')),
+                        el('p', {}, __('Couleur du Texte', 'papy3d-fact-viewer-for-chuck365')),
                         el(ColorPalette, {
                             value: color,
                             onChange: function (val) { setAttributes({ textColor: val }); }
                         }),
                         el(ToggleControl, {
-                            label: __('Afficher le copyright', 'chuck365-fact-viewer'),
+                            label: __('Afficher le copyright', 'papy3d-fact-viewer-for-chuck365'),
                             checked: attributes.showCopyright,
                             onChange: function (val) { setAttributes({ showCopyright: val }); }
                         })
@@ -68,7 +68,7 @@
                     ),
                     el('div', { className: 'cn-content-area' },
                         el('span', { className: 'cn-quote-mark' }, '"'),
-                        __('Le fait de Chuck Norris s\'affichera ici.', 'chuck365-fact-viewer')
+                        __('Le fait de Chuck Norris s\'affichera ici.', 'papy3d-fact-viewer-for-chuck365')
                     ),
                     el('div', { className: 'cn-bottom-bar' },
                         el('div', { className: 'cn-copy-wrapper' },

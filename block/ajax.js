@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const refreshFact = async () => {
             const formData = new FormData();
-            formData.append('action', 'chuck365_get_fact');
+            formData.append('action', 'papyfavi_get_fact');
             formData.append('nonce', nonce);
 
             try {

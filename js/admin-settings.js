@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const titleInput = document.getElementById('chuck365_text_title');
+    const titleInput = document.getElementById('papyfavi_text_title');
     const presets = document.querySelectorAll('.chuck-preset');
     const resetBtn = document.getElementById('chuck-reset');
     const directPreview = document.querySelector('.cn-main-box');
@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const updatePreview = () => {
         if (!directPreview) return;
 
-        const borderInput = document.getElementById('chuck365_border_color');
-        const bgInput = document.getElementById('chuck365_bg_color');
-        const colorInput = document.getElementById('chuck365_text_color');
+        const borderInput = document.getElementById('papyfavi_border_color');
+        const bgInput = document.getElementById('papyfavi_bg_color');
+        const colorInput = document.getElementById('papyfavi_text_color');
 
         if (!borderInput || !bgInput || !colorInput) return;
 
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             titleElement.textContent = titleInput?.value || '';
         }
     };
-
+/*
     if (window.jQuery && jQuery.fn.wpColorPicker) {
         jQuery('.chuck-color-field').wpColorPicker({
             change: () => {
@@ -61,6 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+*/
+/* couleurs plus vives */
+if (window.jQuery && jQuery.fn.wpColorPicker) {
+    jQuery('.chuck-color-field').wpColorPicker({
+        // On définit ici des couleurs ultra-vives
+        palettes: ['#ff0000', '#ff8c00', '#ffea00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff', '#000000'],
+        change: () => {
+            setTimeout(updatePreview, 50);
+        },
+        clear: () => {
+            setTimeout(updatePreview, 50);
+        }
+    });
+	
+}
 
     titleInput?.addEventListener('input', updatePreview);
 
@@ -69,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const { b, bg, c } = e.currentTarget.dataset;
             
             if (window.jQuery) {
-                jQuery('#chuck365_border_color').wpColorPicker('color', b);
-                jQuery('#chuck365_bg_color').wpColorPicker('color', bg);
-                jQuery('#chuck365_text_color').wpColorPicker('color', c);
+                jQuery('#papyfavi_border_color').wpColorPicker('color', b);
+                jQuery('#papyfavi_bg_color').wpColorPicker('color', bg);
+                jQuery('#papyfavi_text_color').wpColorPicker('color', c);
             }
 			
             setTimeout(updatePreview, 100);
@@ -80,9 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     resetBtn?.addEventListener('click', () => {
         if (window.jQuery) {
-            jQuery('#chuck365_border_color').wpColorPicker('color', '#f39c12');
-            jQuery('#chuck365_bg_color').wpColorPicker('color', '#ffffff');
-            jQuery('#chuck365_text_color').wpColorPicker('color', '#222222');
+            jQuery('#papyfavi_border_color').wpColorPicker('color', '#f39c12');
+            jQuery('#papyfavi_bg_color').wpColorPicker('color', '#ffffff');
+            jQuery('#papyfavi_text_color').wpColorPicker('color', '#222222');
         }
         if (titleInput) {
             titleInput.value = 'Chuck Norris Fact du jour';

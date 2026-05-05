@@ -1,251 +1,393 @@
 # Copyright (C) 2026 papy3d
+
 # This file is distributed under the GPLv3.
-msgid ""
-msgstr ""
-"Project-Id-Version: Papy3D Fact Viewer for Chuck365 2.0.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/papy3d-fact-viewer-for-chuck365\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: English <en@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-04T12:49:55+02:00\n"
-"PO-Revision-Date: 2026-05-04 12:49+02:00\n"
-"X-Generator: WP-CLI 2.12.0\n"
+
+msgid ""  
+msgstr ""  
+"Project-Id-Version: Papy3D Fact Viewer for Chuck365 2.0.5\n"  
+"Report-Msgid-Bugs-To: [https://wordpress.org/support/plugin/papy3d-fact-viewer-for-chuck365\n](https://wordpress.org/support/plugin/papy3d-fact-viewer-for-chuck365\n)"  
+"Last-Translator: papy3d\n"  
+"Language-Team: English [en@li.org](mailto:en@li.org)\n"  
+"MIME-Version: 1.0\n"  
+"Content-Type: text/plain; charset=UTF-8\n"  
+"Content-Transfer-Encoding: 8bit\n"  
+"POT-Creation-Date: 2026-05-05T11:13:34+02:00\n"  
+"PO-Revision-Date: 2026-05-05 12:00+0200\n"  
+"X-Generator: WP-CLI 2.12.0\n"  
 "X-Domain: papy3d-fact-viewer-for-chuck365\n"
 
-msgid "Papy3D Fact Viewer for Chuck365"
+#. Plugin Name of the plugin  
+#: papy3d-fact-viewer-for-chuck365.php  
+msgid "Papy3D Fact Viewer for Chuck365"  
 msgstr "Papy3D Fact Viewer for Chuck365"
 
-msgid "https://papy-3d-factory.xyz"
-msgstr "https://papy-3d-factory.xyz"
+#. Plugin URI of the plugin  
+#: papy3d-fact-viewer-for-chuck365.php  
+msgid "[https://github.com/Papy-3D-Factory/Papy3D-Fact-Viewer-for-Chuck365](https://github.com/Papy-3D-Factory/Papy3D-Fact-Viewer-for-Chuck365)"  
+msgstr "[https://github.com/Papy-3D-Factory/Papy3D-Fact-Viewer-for-Chuck365](https://github.com/Papy-3D-Factory/Papy3D-Fact-Viewer-for-Chuck365)"
 
-msgid "Displays a unique and different Chuck Norris fact every day via the official Chuck365.fr API."
+#. Description of the plugin  
+#: papy3d-fact-viewer-for-chuck365.php  
+msgid "Displays a unique and different Chuck Norris fact every day via the official Chuck365.fr API."  
 msgstr "Displays a unique and different Chuck Norris fact every day via the official Chuck365.fr API."
 
-msgid "papy3d"
+#. Author of the plugin  
+#: papy3d-fact-viewer-for-chuck365.php  
+msgid "papy3d"  
 msgstr "papy3d"
 
-msgid "Configuration de Chuck365"
-msgstr "Chuck365 Settings"
+#. Author URI of the plugin  
+#: papy3d-fact-viewer-for-chuck365.php  
+msgid "[https://papy-3d-factory.xyz](https://papy-3d-factory.xyz)"  
+msgstr "[https://papy-3d-factory.xyz](https://papy-3d-factory.xyz)"
 
-msgid "Réglages & Aperçu"
+#: papy3d-fact-viewer-for-chuck365.php:209  
+msgid "Configuration de Papy3D Fact Viewer for Chuck365"  
+msgstr "Papy3D Fact Viewer for Chuck365 Configuration"
+
+#: papy3d-fact-viewer-for-chuck365.php:213  
+msgid "Réglages & Aperçu"  
 msgstr "Settings & Preview"
 
-msgid "Utilisation"
+#: papy3d-fact-viewer-for-chuck365.php:214  
+msgid "Utilisation"  
 msgstr "Usage"
 
-msgid "Soutenir le projet"
-msgstr "Support the project"
+#: papy3d-fact-viewer-for-chuck365.php:215  
+msgid "Soutenir le projet"  
+msgstr "Support the Project"
 
-msgid "À propos"
+#: papy3d-fact-viewer-for-chuck365.php:216  
+msgid "À propos"  
 msgstr "About"
 
-msgid "Bordure / Titre"
+#: papy3d-fact-viewer-for-chuck365.php:227  
+msgid "Bordure / Titre"  
 msgstr "Border / Title"
 
-msgid "Fond"
+#: papy3d-fact-viewer-for-chuck365.php:231  
+msgid "Fond"  
 msgstr "Background"
 
-msgid "Texte"
+#: papy3d-fact-viewer-for-chuck365.php:235  
+msgid "Texte"  
 msgstr "Text"
 
-msgid "Titre"
+#: papy3d-fact-viewer-for-chuck365.php:239  
+#: block/edit.js:38  
+msgid "Titre"  
 msgstr "Title"
 
-msgid "Afficher le Copyright"
+#: papy3d-fact-viewer-for-chuck365.php:243  
+msgid "Afficher le Copyright"  
 msgstr "Display Copyright"
 
-msgid "Afficher la barre de copyright et le lien Chuck365"
+#: papy3d-fact-viewer-for-chuck365.php:246  
+msgid "Afficher la barre de copyright et le lien Chuck365"  
 msgstr "Display the copyright bar and Chuck365 link"
 
-msgid "Presets de style :"
-msgstr "Style presets:"
+#: papy3d-fact-viewer-for-chuck365.php:251  
+msgid "Connexion au service externe"  
+msgstr "External Service Connection"
 
-msgid "Aperçu"
+#. translators: 1: chuck365.fr URL, 2: privacy URL, 3: terms URL  
+#: papy3d-fact-viewer-for-chuck365.php:264  
+#, php-format  
+msgid "J'autorise ce plugin à contacter le service externe <a href=%1$s target=_blank rel=noopener noreferrer>Chuck365.fr&nbsp; une fois par jour pour récupérer le fait du jour. Aucune donnée personnelle des visiteurs n'est transmise. <a href=%2$s target=_blank rel=noopener noreferrer>Politique de confidentialité&nbsp; — <a href=%3$s target=_blank rel=noopener noreferrer>CGU&nbsp;."  
+msgstr "I authorize this plugin to contact the external service <a href=%1$s target=_blank rel=noopener noreferrer>Chuck365.fr&nbsp; once a day to fetch the daily fact. No personal visitor data is transmitted. <a href=%2$s target=_blank rel=noopener noreferrer>Privacy Policy&nbsp; — <a href=%3$s target=_blank rel=noopener noreferrer>Terms of Service&nbsp;."
+
+#: papy3d-fact-viewer-for-chuck365.php:275  
+msgid "Le plugin est inactif tant que cette case n'est pas cochée."  
+msgstr "The plugin is inactive until this box is checked."
+
+#: papy3d-fact-viewer-for-chuck365.php:283  
+msgid "Presets de style :"  
+msgstr "Style Presets:"
+
+#: papy3d-fact-viewer-for-chuck365.php:300  
+msgid "Aperçu"  
 msgstr "Preview"
 
-msgid "Comment afficher les Chuck Norris Facts ?"
-msgstr "How to display Chuck Norris Facts?"
+#: papy3d-fact-viewer-for-chuck365.php:307  
+msgid "Comment afficher les Chuck Norris Facts ?"  
+msgstr "How to Display Chuck Norris Facts?"
 
-msgid "Vous avez deux méthodes simples pour intégrer la puissance de Chuck sur votre site."
-msgstr "You have two simple ways to integrate Chuck's power into your site."
+#: papy3d-fact-viewer-for-chuck365.php:308  
+msgid "Vous avez deux méthodes simples pour intégrer la puissance de Chuck sur votre site."  
+msgstr "You have two simple methods to integrate Chuck's power into your site."
 
-msgid "Via l'éditeur Gutenberg (Recommandé)"
-msgstr "Via the Gutenberg editor (Recommended)"
+#: papy3d-fact-viewer-for-chuck365.php:310  
+msgid "Via l'éditeur Gutenberg (Recommandé)"  
+msgstr "Via the Gutenberg Editor (Recommended)"
 
-msgid "Recherchez simplement le bloc nommé <strong>\"Chuck365 Fact\"</strong> dans l'éditeur de vos pages ou articles. Vous pourrez voir l'aperçu en direct."
-msgstr "Simply search for the block named <strong>\"Chuck365 Fact\"</strong> in your page or post editor. You will see a live preview."
+#: papy3d-fact-viewer-for-chuck365.php:311  
+msgid "Recherchez simplement le bloc nommé **\"Chuck365 Fact\"** dans l'éditeur de vos pages ou articles. Vous pourrez voir l'aperçu en direct."  
+msgstr "Simply search for the block named **\"Chuck365 Fact\"** in your page or post editor. You can see a live preview."
 
-msgid "Via le Shortcode"
-msgstr "Via shortcode"
+#: papy3d-fact-viewer-for-chuck365.php:314  
+msgid "Via le Shortcode"  
+msgstr "Via Shortcode"
 
-msgid "Copiez et collez le code suivant là où vous souhaitez afficher le fait (Widget texte, constructeur de page, etc.) :"
+#: papy3d-fact-viewer-for-chuck365.php:315  
+msgid "Copiez et collez le code suivant là où vous souhaitez afficher le fait (Widget texte, constructeur de page, etc.) :"  
 msgstr "Copy and paste the following code where you want to display the fact (text widget, page builder, etc.):"
 
-msgid "Conseils d'optimisation"
-msgstr "Optimization tips"
+#: papy3d-fact-viewer-for-chuck365.php:319  
+msgid "Conseils d'optimisation"  
+msgstr "Optimization Tips"
 
-msgid "Mise en cache :"
+#: papy3d-fact-viewer-for-chuck365.php:321  
+msgid "Mise en cache :"  
 msgstr "Caching:"
 
-msgid "Le plugin utilise un système de \"Transients\". Le fait est récupéré une seule fois par jour et stocké localement pour garantir une vitesse de chargement optimale."
-msgstr "The plugin uses a \"Transients\" system. The fact is fetched once per day and stored locally to ensure optimal loading speed."
+#: papy3d-fact-viewer-for-chuck365.php:321  
+msgid "Le plugin utilise un système de Transients. Le fait est récupéré une seule fois par jour et stocké localement pour garantir une vitesse de chargement optimale."  
+msgstr "The plugin uses a Transients system. The fact is fetched once a day and stored locally to ensure optimal loading speed."
 
-msgid "Design cohérent :"
-msgstr "Consistent design:"
+#: papy3d-fact-viewer-for-chuck365.php:322  
+msgid "Design cohérent :"  
+msgstr "Consistent Design:"
 
-msgid "Utilisez les presets dans l'onglet \"Réglages\" pour adapter rapidement le widget à la charte graphique de votre thème."
-msgstr "Use the presets in the \"Settings\" tab to quickly match the widget to your theme's design."
+#: papy3d-fact-viewer-for-chuck365.php:322  
+msgid "Utilisez les presets dans l'onglet Réglages pour adapter rapidement le widget à la charte graphique de votre thème."  
+msgstr "Use the presets in the Settings tab to quickly adapt the widget to your theme's design."
 
-msgid "Note technique :"
-msgstr "Technical note:"
+#: papy3d-fact-viewer-for-chuck365.php:325  
+msgid "Note technique :"  
+msgstr "Technical Note:"
 
-msgid "Si vous changez les couleurs et que vous utilisez un plugin de cache (WP Rocket, Autoptimize), pensez à vider le cache pour voir les modifications immédiatement sur votre site."
-msgstr "If you change colors and use a cache plugin (WP Rocket, Autoptimize), remember to clear the cache to see changes immediately on your site."
+#: papy3d-fact-viewer-for-chuck365.php:325  
+msgid "Si vous changez les couleurs et que vous utilisez un plugin de cache (WP Rocket, Autoptimize), pensez à vider le cache pour voir les modifications immédiatement sur votre site."  
+msgstr "If you change the colors and use a caching plugin (WP Rocket, Autoptimize), remember to clear the cache to see the changes immediately on your site."
 
-msgid "Pourquoi soutenir le projet ?"
-msgstr "Why support the project?"
+#: papy3d-fact-viewer-for-chuck365.php:332  
+msgid "Pourquoi soutenir le projet ?"  
+msgstr "Why Support the Project?"
 
-msgid "Soutenir Papy3D Fact Viewer for Chuck365, ce n'est pas seulement financer un serveur, c'est participer à la diffusion d'une institution du web. Voici pourquoi votre contribution est essentielle :"
-msgstr "Supporting Papy3D Fact Viewer for Chuck365 is not just about funding a server, it's about spreading a web institution. Here's why your contribution matters:"
+#: papy3d-fact-viewer-for-chuck365.php:333  
+msgid "Soutenir Papy3D Fact Viewer for Chuck365, ce n'est pas seulement financer un serveur, c'est participer à la diffusion d'une institution du web. Voici pourquoi votre contribution est essentielle :"  
+msgstr "Supporting Papy3D Fact Viewer for Chuck365 isn't just about funding a server—it's about helping spread a web institution. Here’s why your contribution is essential:"
 
-msgid "Maintenir une infrastructure \"Punchy\" :"
-msgstr "Maintain a \"punchy\" infrastructure:"
+#: papy3d-fact-viewer-for-chuck365.php:335  
+msgid "Maintenir une infrastructure Punchy :"  
+msgstr "Maintain a Punchy Infrastructure:"
 
-msgid "Derrière chaque \"Fact\", une API tourne 24h/24. Votre soutien aide à couvrir les frais d'hébergement."
-msgstr "Behind every \"fact\", an API runs 24/7. Your support helps cover hosting costs."
+#: papy3d-fact-viewer-for-chuck365.php:335  
+msgid "Derrière chaque Fact, une API tourne 24h/24. Votre soutien aide à couvrir les frais d'hébergement."  
+msgstr "Behind every Fact, an API runs 24/7. Your support helps cover hosting costs."
 
-msgid "Un projet Indépendant et Sans Pub :"
-msgstr "An independent and ad-free project:"
+#: papy3d-fact-viewer-for-chuck365.php:336  
+msgid "Un projet Indépendant et Sans Pub :"  
+msgstr "An Independent, Ad-Free Project:"
 
-msgid "Nous refusons de polluer l'interface. Ce modèle repose sur la bienveillance de la communauté."
-msgstr "We refuse to clutter the interface. This model relies on community goodwill."
+#: papy3d-fact-viewer-for-chuck365.php:336  
+msgid "Nous refusons de polluer l'interface. Ce modèle repose sur la bienveillance de la communauté."  
+msgstr "We refuse to clutter the interface. This model relies on the community's goodwill."
 
-msgid "Booster le développement futur :"
-msgstr "Boost future development:"
+#: papy3d-fact-viewer-for-chuck365.php:337  
+msgid "Booster le développement futur :"  
+msgstr "Boost Future Development:"
 
-msgid "Amélioration de l'algorithme, nouvelles intégrations et maintenance de la compatibilité WordPress."
-msgstr "Algorithm improvements, new integrations, and ongoing WordPress compatibility maintenance."
+#: papy3d-fact-viewer-for-chuck365.php:337  
+msgid "Amélioration de l'algorithme, nouvelles intégrations et maintenance de la compatibilité WordPress."  
+msgstr "Improving the algorithm, adding new integrations, and maintaining WordPress compatibility."
 
-msgid "Offrir un café à la forge :"
-msgstr "Buy the forge a coffee:"
+#: papy3d-fact-viewer-for-chuck365.php:338  
+msgid "Offrir un café à la forge :"  
+msgstr "Buy the Forge a Coffee:"
 
-msgid "Développer selon les standards de 2026 demande du temps. Vous valorisez ainsi le travail de Papy 3D Factory."
-msgstr "Developing to 2026 standards takes time. You support the work of Papy 3D Factory."
+#: papy3d-fact-viewer-for-chuck365.php:338  
+msgid "Développer selon les standards de 2026 demande du temps. Vous valorisez ainsi le travail de Papy 3D Factory."  
+msgstr "Developing to 2026 standards takes time. You’re supporting the work of Papy 3D Factory."
 
-msgid "Le saviez-vous ?"
-msgstr "Did you know?"
+#: papy3d-fact-viewer-for-chuck365.php:341  
+msgid "Le saviez-vous ?"  
+msgstr "Did You Know?"
 
-msgid "Chuck Norris ne dort jamais. Il attend. Mais en attendant, il boit du café. Offrez-lui-en un pour qu'il continue de veiller sur votre site web !"
-msgstr "Chuck Norris never sleeps. He waits. Meanwhile, he drinks coffee. Buy him one so he keeps watching over your website!"
+#: papy3d-fact-viewer-for-chuck365.php:342  
+msgid "Chuck Norris ne dort jamais. Il attend. Mais en attendant, il boit du café. Offrez-lui-en un pour qu'il continue de veiller sur votre site web !"  
+msgstr "Chuck Norris never sleeps. He waits. But while waiting, he drinks coffee. Buy him one to keep him watching over your website!"
 
-msgid "Soutenir"
+#: papy3d-fact-viewer-for-chuck365.php:350  
+msgid "Soutenir"  
 msgstr "Support"
 
-msgid "Le Projet Papy3D Fact Viewer for Chuck365"
+#: papy3d-fact-viewer-for-chuck365.php:359  
+msgid "Le Projet Papy3D Fact Viewer for Chuck365"  
 msgstr "The Papy3D Fact Viewer for Chuck365 Project"
 
-msgid "Voici une présentation du projet Papy3D Fact Viewer for Chuck365, une initiative dédiée à la force brute et à l'humour légendaire de Chuck Norris, conçue pour les développeurs et les administrateurs de sites web."
-msgstr "Here is an overview of the Papy3D Fact Viewer for Chuck365 project, an initiative dedicated to the brute strength and legendary humor of Chuck Norris, designed for developers and website administrators."
+#: papy3d-fact-viewer-for-chuck365.php:360  
+msgid "Voici une présentation du projet Papy3D Fact Viewer for Chuck365, une initiative dédiée à la force brute et à l'humour légendaire de Chuck Norris, conçue pour les développeurs et les administrateurs de sites web."  
+msgstr "Here’s an introduction to the Papy3D Fact Viewer for Chuck365 project, an initiative dedicated to Chuck Norris’s brute strength and legendary humor, designed for developers and website administrators."
 
-msgid "Chuck365.fr est une plateforme dont l'unique mission est de propager la sagesse (parfois percutante) de Chuck Norris à travers le web. Le concept est simple mais implacable : offrir chaque jour un fait unique et aléatoire sur l'homme qui a fait pleurer un oignon."
-msgstr "Chuck365.fr is a platform whose sole mission is to spread the (sometimes hard-hitting) wisdom of Chuck Norris across the web. The concept is simple yet relentless: deliver a unique and random fact every day about the man who made an onion cry."
+#: papy3d-fact-viewer-for-chuck365.php:361  
+msgid "Chuck365.fr est une plateforme dont l'unique mission est de propager la sagesse (parfois percutante) de Chuck Norris à travers le web. Le concept est simple mais implacable : offrir chaque jour un fait unique et aléatoire sur l'homme qui a fait pleurer un oignon."  
+msgstr "Chuck365.fr is a platform with a single mission: to spread Chuck Norris’s (sometimes hard-hitting) wisdom across the web. The concept is simple but relentless: deliver a unique, random fact every day about the man who made an onion cry."
 
-msgid "Contrairement aux bases de données statiques, Chuck365 mise sur la fraîcheur de son contenu pour garantir que vos utilisateurs ne lisent jamais deux fois la même vérité universelle dans un intervalle réduit."
-msgstr "Unlike static databases, Chuck365 focuses on fresh content to ensure your users never read the same universal truth twice within a short period."
+#: papy3d-fact-viewer-for-chuck365.php:362  
+msgid "Contrairement aux bases de données statiques, Chuck365 mise sur la fraîcheur de son contenu pour garantir que vos utilisateurs ne lisent jamais deux fois la même vérité universelle dans un intervalle réduit."  
+msgstr "Unlike static databases, Chuck365 focuses on fresh content to ensure your users never read the same universal truth twice in a short time."
 
-msgid "Une API Puissante et Légère"
+#: papy3d-fact-viewer-for-chuck365.php:363  
+msgid "Une API Puissante et Légère"  
 msgstr "A Powerful and Lightweight API"
 
-msgid "Au cœur du projet se trouve une API REST robuste conçue pour une intégration universelle."
+#: papy3d-fact-viewer-for-chuck365.php:364  
+msgid "Au cœur du projet se trouve une API REST robuste conçue pour une intégration universelle."  
 msgstr "At the heart of the project is a robust REST API designed for universal integration."
 
-msgid "Unique et Quotidien :"
+#: papy3d-fact-viewer-for-chuck365.php:366  
+msgid "Unique et Quotidien :"  
 msgstr "Unique and Daily:"
 
-msgid "L'API est optimisée pour fournir un \"Fact du jour\" cohérent pour tous les utilisateurs."
-msgstr "The API is optimized to provide a consistent \"fact of the day\" for all users."
+#: papy3d-fact-viewer-for-chuck365.php:366  
+msgid "L'API est optimisée pour fournir un Fact du jour cohérent pour tous les utilisateurs."  
+msgstr "The API is optimized to provide a consistent Fact of the Day for all users."
 
-msgid "Format JSON :"
+#: papy3d-fact-viewer-for-chuck365.php:367  
+msgid "Format JSON :"  
 msgstr "JSON Format:"
 
-msgid "Les réponses sont livrées en JSON, permettant une manipulation facile en JavaScript, PHP, Python ou tout autre langage moderne."
-msgstr "Responses are delivered in JSON, allowing easy use in JavaScript, PHP, Python, or any modern language."
+#: papy3d-fact-viewer-for-chuck365.php:367  
+msgid "Les réponses sont livrées en JSON, permettant une manipulation facile en JavaScript, PHP, Python ou tout autre langage moderne."  
+msgstr "Responses are delivered in JSON, allowing easy manipulation in JavaScript, PHP, Python, or any modern language."
 
-msgid "Haute Disponibilité :"
+#: papy3d-fact-viewer-for-chuck365.php:368  
+msgid "Haute Disponibilité :"  
 msgstr "High Availability:"
 
-msgid "Hébergée pour répondre plus vite qu'un high-kick, l'API supporte des requêtes provenant de divers environnements sans latence perceptible."
-msgstr "Hosted to respond faster than a high-kick, the API handles requests from various environments with no noticeable latency."
+#: papy3d-fact-viewer-for-chuck365.php:368  
+msgid "Hébergée pour répondre plus vite qu'un high-kick, l'API supporte des requêtes provenant de divers environnements sans latence perceptible."  
+msgstr "Hosted to respond faster than a high-kick, the API supports requests from various environments with no noticeable latency."
 
-msgid "Le Plugin Papy3D Fact Viewer for Chuck365"
+#: papy3d-fact-viewer-for-chuck365.php:370  
+msgid "Le Plugin Papy3D Fact Viewer for Chuck365"  
 msgstr "The Papy3D Fact Viewer for Chuck365 Plugin"
 
-msgid "Pour les utilisateurs de WordPress, le plugin Papy3D Fact Viewer for Chuck365 (actuellement en version 2.0.4) agit comme le pont direct entre la puissance de l'API et votre interface utilisateur."
-msgstr "For WordPress users, the Papy3D Fact Viewer for Chuck365 plugin (currently version 2.0.4) acts as a direct bridge between the API and your user interface."
+#: papy3d-fact-viewer-for-chuck365.php:371  
+msgid "Pour les utilisateurs de WordPress, le plugin Papy3D Fact Viewer for Chuck365 (actuellement en version 2.0.5) agit comme le pont direct entre la puissance de l'API et votre interface utilisateur."  
+msgstr "For WordPress users, the Papy3D Fact Viewer for Chuck365 plugin (currently version 2.0.5) acts as the direct bridge between the API’s power and your user interface."
 
-msgid "Caractéristiques Principales :"
+#: papy3d-fact-viewer-for-chuck365.php:372  
+msgid "Caractéristiques Principales :"  
 msgstr "Key Features:"
 
-msgid "Affichage Dynamique :"
+#: papy3d-fact-viewer-for-chuck365.php:374  
+msgid "Affichage Dynamique :"  
 msgstr "Dynamic Display:"
 
-msgid "Le plugin récupère automatiquement les faits via l'API officielle."
-msgstr "The plugin automatically retrieves facts via the official API."
+#: papy3d-fact-viewer-for-chuck365.php:374  
+msgid "Le plugin récupère automatiquement les faits via l'API officielle."  
+msgstr "The plugin automatically fetches facts via the official API."
 
-msgid "Performance Optimisée :"
+#: papy3d-fact-viewer-for-chuck365.php:375  
+msgid "Performance Optimisée :"  
 msgstr "Optimized Performance:"
 
-msgid "Utilisation d'un système de mise en cache (transients) qui stocke le fait jusqu'au lendemain."
-msgstr "Uses a caching system (transients) to store the fact until the next day."
+#: papy3d-fact-viewer-for-chuck365.php:375  
+msgid "Utilisation d'un système de mise en cache (transients) qui stocke le fait jusqu'au lendemain."  
+msgstr "Uses a caching system (transients) that stores the fact until the next day."
 
-msgid "Personnalisation Totale :"
+#: papy3d-fact-viewer-for-chuck365.php:376  
+msgid "Personnalisation Totale :"  
 msgstr "Full Customization:"
 
-msgid "Interface d'administration dédiée pour modifier les couleurs et titres."
-msgstr "Dedicated admin interface to customize colors and titles."
+#: papy3d-fact-viewer-for-chuck365.php:376  
+msgid "Interface d'administration dédiée pour modifier les couleurs et titres."  
+msgstr "Dedicated admin interface to modify colors and titles."
 
-msgid "Gutenberg & Shortcode :"
+#: papy3d-fact-viewer-for-chuck365.php:377  
+msgid "Gutenberg & Shortcode :"  
 msgstr "Gutenberg & Shortcode:"
 
-msgid "Compatible avec l'éditeur moderne et utilisable via [chuck_fact]."
-msgstr "Compatible with the modern editor and usable via [chuck_fact]."
+#: papy3d-fact-viewer-for-chuck365.php:377  
+msgid "Compatible avec l'éditeur moderne et utilisable via [papyfavi_fact]."  
+msgstr "Compatible with the modern editor and usable via [papyfavi_fact]."
 
-msgid "Sécurité Native :"
-msgstr "Native Security:"
+#: papy3d-fact-viewer-for-chuck365.php:378  
+msgid "Sécurité Native :"  
+msgstr "Built-in Security:"
 
-msgid "Développé avec des standards stricts (PHP 8.1+, protection CSRF, assainissement des données)."
-msgstr "Built with strict standards (PHP 8.1+, CSRF protection, data sanitization)."
+#: papy3d-fact-viewer-for-chuck365.php:378  
+msgid "Développé avec des standards stricts (PHP 8.1+, protection CSRF, assainissement des données)."  
+msgstr "Developed with strict standards (PHP 8.1+, CSRF protection, data sanitization)."
 
-msgid "Pourquoi l'utiliser ?"
-msgstr "Why use it?"
+#: papy3d-fact-viewer-for-chuck365.php:380  
+msgid "Pourquoi l'utiliser ?"  
+msgstr "Why Use It?"
 
-msgid "Ajouter une touche d'humour à un tableau de bord ou à une barre latérale de blog n'a jamais été aussi simple. Le projet Chuck365 prouve que même la technologie la plus sérieuse peut avoir un crochet du droit redoutable... et très drôle."
-msgstr "Adding a touch of humor to a dashboard or blog sidebar has never been easier. The Chuck365 project proves that even serious technology can deliver a powerful… and hilarious punch."
+#: papy3d-fact-viewer-for-chuck365.php:381  
+msgid "Ajouter une touche d'humour à un tableau de bord ou à une barre latérale de blog n'a jamais été aussi simple. Le projet Chuck365 prouve que même la technologie la plus sérieuse peut avoir un crochet du droit redoutable... et très drôle."  
+msgstr "Adding a touch of humor to a dashboard or blog sidebar has never been easier. The Chuck365 project proves that even the most serious technology can have a right hook that’s… hilarious."
 
-msgid "Note : Chuck Norris n'utilise pas d'API. Les données se déplacent par peur de le contrarier."
-msgstr "Note: Chuck Norris doesn't use APIs. Data moves out of fear of upsetting him."
+#: papy3d-fact-viewer-for-chuck365.php:382  
+msgid "Note : Chuck Norris n'utilise pas d'API. Les données se déplacent par peur de le contrarier."  
+msgstr "Note: Chuck Norris doesn’t use APIs. Data moves out of fear of upsetting him."
 
-msgid "Papy 3D Factory"
+#: papy3d-fact-viewer-for-chuck365.php:386  
+msgid "Papy 3D Factory"  
 msgstr "Papy 3D Factory"
 
-msgid "Chuck est occupé."
+#: papy3d-fact-viewer-for-chuck365.php:407  
+msgid "Chuck365 est désactivé. Veuillez autoriser la connexion au service externe dans les réglages du plugin."  
+msgstr "Chuck365 is disabled. Please authorize the external service connection in the plugin settings."
+
+#: papy3d-fact-viewer-for-chuck365.php:427  
+msgid "Chuck est occupé."  
 msgstr "Chuck is busy."
 
-msgid "Chuck se repose."
+#: papy3d-fact-viewer-for-chuck365.php:434  
+#: papy3d-fact-viewer-for-chuck365.php:448  
+#: papy3d-fact-viewer-for-chuck365.php:450  
+msgid "Chuck se repose."  
 msgstr "Chuck is resting."
 
-msgid "Chuck Icon"
+#: papy3d-fact-viewer-for-chuck365.php:483  
+msgid "Le plugin est inactif. Pour afficher les Chuck Norris Facts, autorisez la connexion au service externe Chuck365.fr dans les"  
+msgstr "The plugin is inactive. To display Chuck Norris Facts, authorize the connection to the external service Chuck365.fr in the"
+
+#: papy3d-fact-viewer-for-chuck365.php:485  
+msgid "réglages du plugin."  
+msgstr "plugin settings."
+
+#: papy3d-fact-viewer-for-chuck365.php:543  
+msgid "Chuck Icon"  
 msgstr "Chuck Icon"
 
-msgid "Visiter le site"
-msgstr "Visit the website"
+#: papy3d-fact-viewer-for-chuck365.php:556  
+msgid "Visiter le site"  
+msgstr "Visit the Site"
 
-msgctxt "block title"
-msgid "Chuck365 Fact Viewer"
-msgstr "Chuck365 Fact Viewer"
+#: block/edit.js:36  
+msgid "Configuration Style"  
+msgstr "Style Configuration"
 
-msgctxt "block description"
-msgid "Affiche un fait de Chuck Norris chaque jour."
-msgstr "Displays a Chuck Norris fact every day."
+#: block/edit.js:42  
+msgid "Couleur de Bordure"  
+msgstr "Border Color"
+
+#: block/edit.js:47  
+msgid "Couleur de Fond"  
+msgstr "Background Color"
+
+#: block/edit.js:52  
+msgid "Couleur du Texte"  
+msgstr "Text Color"
+
+#: block/edit.js:58  
+msgid "Afficher le copyright"  
+msgstr "Display Copyright"
+
+#: block/edit.js:71  
+msgid "Le fait de Chuck Norris s'affichera ici."  
+msgstr "The Chuck Norris fact will display here."
+
+#: block/block.json  
+msgctxt "block title"  
+msgid "Chuck Norris Fact du jour"  
+msgstr "Chuck Norris Fact of the Day"
+
+#: block/block.json  
+msgctxt "block description"  
+msgid "Affiche un fait de Chuck Norris chaque jour via l'API officielle."  
+msgstr "Displays a Chuck Norris fact every day via the official API."

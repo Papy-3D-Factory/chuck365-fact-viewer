@@ -1,10 +1,11 @@
 <?php
 /**
  * Plugin Name: Papy3D Fact Viewer for Chuck365
- * Plugin URI: https://papy-3d-factory.xyz
+ * Plugin URI: https://github.com/Papy-3D-Factory/Papy3D-Fact-Viewer-for-Chuck365
  * Description: Displays a unique and different Chuck Norris fact every day via the official Chuck365.fr API.
- * Version: 2.0.4
+ * Version: 2.0.5
  * Author: papy3d
+ * Author URI: https://papy-3d-factory.xyz
  * Text Domain: papy3d-fact-viewer-for-chuck365
  * License: GPLv3
  */
@@ -17,10 +18,10 @@ if (!defined('ABSPATH')) {
 }
 
 // Définition directe de la constante SANS variable globale
-if (!defined('PAPY3D_FACT_VIEWER_FOR_CHUCK365_VERSION')) {
+if (!defined('PAPYFAVI_VERSION')) {
     define(
-        'PAPY3D_FACT_VIEWER_FOR_CHUCK365_VERSION',
-        '2.0.4' . (defined('WP_DEBUG') && WP_DEBUG ? '.' . filemtime(__DIR__ . '/js/admin-settings.js') : '')
+        'PAPYFAVI_VERSION',
+        '2.0.5' . (defined('WP_DEBUG') && WP_DEBUG ? '.' . filemtime(__DIR__ . '/js/admin-settings.js') : '')
     );
 }
 
@@ -51,10 +52,12 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
         add_action('admin_menu', [$this, 'menu']);
         add_action('admin_init', [$this, 'settings']);
         add_shortcode('chuck_fact', [$this, 'shortcode_render']);
-        add_action('wp_ajax_chuck365_get_fact', [$this, 'ajax_fact']);
-        add_action('wp_ajax_nopriv_chuck365_get_fact', [$this, 'ajax_fact']);
+        add_shortcode('papyfavi_fact', [$this, 'shortcode_render']); // alias unique requis par WordPress.org
+        add_action('wp_ajax_papyfavi_get_fact', [$this, 'ajax_fact']);
+        add_action('wp_ajax_nopriv_papyfavi_get_fact', [$this, 'ajax_fact']);
         add_action('admin_enqueue_scripts', [$this, 'admin_assets']);
         add_action('enqueue_block_editor_assets', [$this, 'enqueue_editor_defaults']);
+        add_action('admin_notices', [$this, 'consent_notice']);
     }
 
     /**
@@ -76,17 +79,17 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
      */
     public function register_block_modern(): void {
         wp_register_style(
-            'chuck365-style',
+            'papyfavi-style',
             plugins_url('css/style.css', __FILE__),
             [],
 			file_exists(__DIR__ . '/css/style.css') ? (string) filemtime(__DIR__ . '/css/style.css') : null 
 		);
 
         wp_register_script(
-            'chuck365-editor-script',
+            'papyfavi-editor-script',
             plugins_url('block/edit.js', __FILE__),
             array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n'),
-            PAPY3D_FACT_VIEWER_FOR_CHUCK365_VERSION,
+            PAPYFAVI_VERSION,
             true
         );
 
@@ -96,10 +99,10 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 
         if (!is_admin()) {
             wp_enqueue_script(
-                'chuck365-view-script',
+                'papyfavi-view-script',
                 plugins_url('block/ajax.js', __FILE__),
                 [],
-                PAPY3D_FACT_VIEWER_FOR_CHUCK365_VERSION,
+                PAPYFAVI_VERSION,
                 true
             );
         }
@@ -112,16 +115,16 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
      * @return void
      */
     public function enqueue_editor_defaults(): void {
-		wp_enqueue_script('chuck365-editor-script');
+		wp_enqueue_script('papyfavi-editor-script');
 
 		wp_localize_script(
-			'chuck365-editor-script',
-			'chuck365Defaults',
+			'papyfavi-editor-script',
+			'papyfaviDefaults',
 			[
-				'borderColor' => sanitize_hex_color(get_option('chuck365_border_color', '#f39c12')),
-				'bgColor'     => sanitize_hex_color(get_option('chuck365_bg_color', '#ffffff')),
-				'textColor'   => sanitize_hex_color(get_option('chuck365_text_color', '#222222')),
-				'title'       => sanitize_text_field(get_option('chuck365_text_title', 'Chuck Fact')),
+				'borderColor' => sanitize_hex_color(get_option('papyfavi_border_color', '#f39c12')),
+				'bgColor'     => sanitize_hex_color(get_option('papyfavi_bg_color', '#ffffff')),
+				'textColor'   => sanitize_hex_color(get_option('papyfavi_text_color', '#222222')),
+				'title'       => sanitize_text_field(get_option('papyfavi_text_title', 'Chuck Fact')),
 			]
 		);
 	}
@@ -134,13 +137,13 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
      * @return void
      */
     public function admin_assets($hook): void {
-		if ($hook !== 'toplevel_page_chuck365' || !current_user_can('manage_options')) {
+		if ($hook !== 'toplevel_page_papyfavi' || !current_user_can('manage_options')) {
 			return;
 		}
-		wp_enqueue_style('chuck365-admin-css', plugins_url('css/admin.css', __FILE__), [], PAPY3D_FACT_VIEWER_FOR_CHUCK365_VERSION);
+		wp_enqueue_style('papyfavi-admin-css', plugins_url('css/admin.css', __FILE__), [], PAPYFAVI_VERSION);
 		wp_enqueue_style('wp-color-picker');
 		wp_enqueue_script('wp-color-picker');
-		wp_enqueue_script('chuck365-admin-js', plugins_url('js/admin-settings.js', __FILE__), ['wp-color-picker'], PAPY3D_FACT_VIEWER_FOR_CHUCK365_VERSION, true);
+		wp_enqueue_script('papyfavi-admin-js', plugins_url('js/admin-settings.js', __FILE__), ['wp-color-picker'], PAPYFAVI_VERSION, true);
 	}
 
     /**
@@ -150,7 +153,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
      * @return void
      */
     public function menu(): void {
-        add_menu_page('Chuck365', 'Chuck365', 'manage_options', 'chuck365', [$this, 'admin_page'], 'dashicons-superhero');
+        add_menu_page('Chuck365', 'Chuck365', 'manage_options', 'papyfavi', [$this, 'admin_page'], 'dashicons-superhero');
     }
 
     /**
@@ -178,11 +181,16 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 			'sanitize_callback' => 'rest_sanitize_boolean'
 		];
 
-		register_setting('chuck365-group', 'chuck365_border_color', $color_args);
-		register_setting('chuck365-group', 'chuck365_bg_color', $color_args);
-		register_setting('chuck365-group', 'chuck365_text_color', $color_args);
-		register_setting('chuck365-group', 'chuck365_text_title', $text_args);
-		register_setting('chuck365-group', 'chuck365_show_copyright', $bool_args);
+		register_setting('papyfavi-group', 'papyfavi_border_color', $color_args);
+		register_setting('papyfavi-group', 'papyfavi_bg_color', $color_args);
+		register_setting('papyfavi-group', 'papyfavi_text_color', $color_args);
+		register_setting('papyfavi-group', 'papyfavi_text_title', $text_args);
+		register_setting('papyfavi-group', 'papyfavi_show_copyright', $bool_args);
+		register_setting('papyfavi-group', 'papyfavi_api_consent', [
+			'type'              => 'boolean',
+			'default'           => false,
+			'sanitize_callback' => 'rest_sanitize_boolean',
+		]);
 	}
 
     /**
@@ -198,7 +206,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
         <div class="wrap">
             <h1 class="wp-heading-inline cn-title-container">
                 <img src="<?php echo esc_url($icon_url); ?>" alt="Chuck Icon" class="cn-custom-icon">
-                <span><?php esc_html_e('Configuration de Chuck365', 'papy3d-fact-viewer-for-chuck365'); ?></span>
+                <span><?php esc_html_e('Configuration de Papy3D Fact Viewer for Chuck365', 'papy3d-fact-viewer-for-chuck365'); ?></span>
             </h1>
 
             <nav class="nav-tab-wrapper" style="margin-bottom: 20px;">
@@ -213,29 +221,60 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
                     <div id="post-body" class="metabox-holder columns-1">
                         <div id="post-body-content">
                             <form method="post" action="options.php">
-                                <?php settings_fields('chuck365-group'); do_settings_sections('chuck365-group'); ?>
+                                <?php settings_fields('papyfavi-group'); do_settings_sections('papyfavi-group'); ?>
                                 <table class="form-table">
                                     <tr>
                                         <th scope="row"><?php esc_html_e('Bordure / Titre', 'papy3d-fact-viewer-for-chuck365'); ?></th>
-                                        <td><input type="text" name="chuck365_border_color" id="chuck365_border_color" value="<?php echo esc_attr(sanitize_hex_color(get_option('chuck365_border_color', '#f39c12'))); ?>" class="chuck-color-field" /></td>
+                                        <td><input type="text" name="papyfavi_border_color" id="papyfavi_border_color" value="<?php echo esc_attr(sanitize_hex_color(get_option('papyfavi_border_color', '#f39c12'))); ?>" class="chuck-color-field" /></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php esc_html_e('Fond', 'papy3d-fact-viewer-for-chuck365'); ?></th>
-                                        <td><input type="text" name="chuck365_bg_color" id="chuck365_bg_color" value="<?php echo esc_attr(sanitize_hex_color(get_option('chuck365_bg_color', '#ffffff'))); ?>" class="chuck-color-field" /></td>
+                                        <td><input type="text" name="papyfavi_bg_color" id="papyfavi_bg_color" value="<?php echo esc_attr(sanitize_hex_color(get_option('papyfavi_bg_color', '#ffffff'))); ?>" class="chuck-color-field" /></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php esc_html_e('Texte', 'papy3d-fact-viewer-for-chuck365'); ?></th>
-                                        <td><input type="text" name="chuck365_text_color" id="chuck365_text_color" value="<?php echo esc_attr(sanitize_hex_color(get_option('chuck365_text_color', '#222222'))); ?>" class="chuck-color-field" /></td>
+                                        <td><input type="text" name="papyfavi_text_color" id="papyfavi_text_color" value="<?php echo esc_attr(sanitize_hex_color(get_option('papyfavi_text_color', '#222222'))); ?>" class="chuck-color-field" /></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php esc_html_e('Titre', 'papy3d-fact-viewer-for-chuck365'); ?></th>
-                                        <td><input type="text" name="chuck365_text_title" id="chuck365_text_title" value="<?php echo esc_attr(get_option('chuck365_text_title', 'Chuck Norris Fact du jour')); ?>" class="regular-text" /></td>
+                                        <td><input type="text" name="papyfavi_text_title" id="papyfavi_text_title" value="<?php echo esc_attr(get_option('papyfavi_text_title', 'Chuck Norris Fact du jour')); ?>" class="regular-text" /></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php esc_html_e('Afficher le Copyright', 'papy3d-fact-viewer-for-chuck365'); ?></th>
                                         <td>
-                                            <input type="checkbox" name="chuck365_show_copyright" id="chuck365_show_copyright" value="1" <?php checked(1, get_option('chuck365_show_copyright', 1)); ?> />
-                                            <label for="chuck365_show_copyright"><?php esc_html_e('Afficher la barre de copyright et le lien Chuck365', 'papy3d-fact-viewer-for-chuck365'); ?></label>
+                                            <input type="checkbox" name="papyfavi_show_copyright" id="papyfavi_show_copyright" value="1" <?php checked(1, get_option('papyfavi_show_copyright', 1)); ?> />
+                                            <label for="papyfavi_show_copyright"><?php esc_html_e('Afficher la barre de copyright et le lien Chuck365', 'papy3d-fact-viewer-for-chuck365'); ?></label>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-top: 2px solid #ddd;">
+                                        <th scope="row">
+                                            <?php esc_html_e('Connexion au service externe', 'papy3d-fact-viewer-for-chuck365'); ?>
+                                        </th>
+                                        <td>
+                                            <label>
+                                                <input type="checkbox"
+                                                       name="papyfavi_api_consent"
+                                                       id="papyfavi_api_consent"
+                                                       value="1"
+                                                       <?php checked(1, get_option('papyfavi_api_consent', false)); ?> />
+                                                <?php
+                                                echo wp_kses(
+                                                    sprintf(
+                                                        /* translators: 1: chuck365.fr URL, 2: privacy URL, 3: terms URL */
+                                                        __('J\'autorise ce plugin à contacter le service externe <a href="%1$s" target="_blank" rel="noopener noreferrer">Chuck365.fr</a> une fois par jour pour récupérer le fait du jour. Aucune donnée personnelle des visiteurs n\'est transmise. <a href="%2$s" target="_blank" rel="noopener noreferrer">Politique de confidentialité</a> — <a href="%3$s" target="_blank" rel="noopener noreferrer">CGU</a>.', 'papy3d-fact-viewer-for-chuck365'),
+                                                        'https://chuck365.fr',
+                                                        'https://chuck365.fr/privacy.html',
+                                                        'https://chuck365.fr/terms.html'
+                                                    ),
+                                                    ['a' => ['href' => [], 'target' => [], 'rel' => []]]
+                                                );
+                                                ?>
+                                            </label>
+                                            <?php if (!get_option('papyfavi_api_consent', false)) : ?>
+                                                <p style="color:#d63638; font-weight:600; margin-top:8px;">
+                                                    ⚠️ <?php esc_html_e('Le plugin est inactif tant que cette case n\'est pas cochée.', 'papy3d-fact-viewer-for-chuck365'); ?>
+                                                </p>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 </table>
@@ -274,7 +313,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
                     <div style="margin-bottom: 25px;">
                         <h3>2. <?php esc_html_e('Via le Shortcode', 'papy3d-fact-viewer-for-chuck365'); ?></h3>
                         <p><?php esc_html_e('Copiez et collez le code suivant là où vous souhaitez afficher le fait (Widget texte, constructeur de page, etc.) :', 'papy3d-fact-viewer-for-chuck365'); ?></p>
-                        <code>[chuck_fact]</code>
+                        <code>[papyfavi_fact]</code>
                     </div>
                     <hr>
                     <h3>💡 <?php esc_html_e('Conseils d\'optimisation', 'papy3d-fact-viewer-for-chuck365'); ?></h3>
@@ -329,13 +368,13 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
                         <li><strong><?php esc_html_e('Haute Disponibilité :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Hébergée pour répondre plus vite qu\'un high-kick, l\'API supporte des requêtes provenant de divers environnements sans latence perceptible.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
                     </ul>
                     <h3>📦 <?php esc_html_e('Le Plugin Papy3D Fact Viewer for Chuck365', 'papy3d-fact-viewer-for-chuck365'); ?></h3>
-                    <p><?php esc_html_e('Pour les utilisateurs de WordPress, le plugin Papy3D Fact Viewer for Chuck365 (actuellement en version 2.0.4) agit comme le pont direct entre la puissance de l\'API et votre interface utilisateur.', 'papy3d-fact-viewer-for-chuck365'); ?></p>
+                    <p><?php esc_html_e('Pour les utilisateurs de WordPress, le plugin Papy3D Fact Viewer for Chuck365 (actuellement en version 2.0.5) agit comme le pont direct entre la puissance de l\'API et votre interface utilisateur.', 'papy3d-fact-viewer-for-chuck365'); ?></p>
                     <h4><?php esc_html_e('Caractéristiques Principales :', 'papy3d-fact-viewer-for-chuck365'); ?></h4>
                     <ul>
                         <li><strong><?php esc_html_e('Affichage Dynamique :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Le plugin récupère automatiquement les faits via l\'API officielle.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
                         <li><strong><?php esc_html_e('Performance Optimisée :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Utilisation d\'un système de mise en cache (transients) qui stocke le fait jusqu\'au lendemain.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
                         <li><strong><?php esc_html_e('Personnalisation Totale :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Interface d\'administration dédiée pour modifier les couleurs et titres.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
-                        <li><strong><?php esc_html_e('Gutenberg & Shortcode :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Compatible avec l\'éditeur moderne et utilisable via [chuck_fact].', 'papy3d-fact-viewer-for-chuck365'); ?></li>
+                        <li><strong><?php esc_html_e('Gutenberg & Shortcode :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Compatible avec l\'éditeur moderne et utilisable via [papyfavi_fact].', 'papy3d-fact-viewer-for-chuck365'); ?></li>
                         <li><strong><?php esc_html_e('Sécurité Native :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Développé avec des standards stricts (PHP 8.1+, protection CSRF, assainissement des données).', 'papy3d-fact-viewer-for-chuck365'); ?></li>
                     </ul>
                     <h4><?php esc_html_e('Pourquoi l\'utiliser ?', 'papy3d-fact-viewer-for-chuck365'); ?></h4>
@@ -343,7 +382,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
                     <p><em><?php esc_html_e('Note : Chuck Norris n\'utilise pas d\'API. Les données se déplacent par peur de le contrarier.', 'papy3d-fact-viewer-for-chuck365'); ?></em></p>
                     <hr>
                     <p>
-                        <strong>Version :</strong> <?php echo esc_html(PAPY3D_FACT_VIEWER_FOR_CHUCK365_VERSION); ?> |
+                        <strong>Version :</strong> <?php echo esc_html(PAPYFAVI_VERSION); ?> |
                         <strong>Auteur :</strong> <?php echo esc_html__('Papy 3D Factory', 'papy3d-fact-viewer-for-chuck365'); ?>
                     </p>
                 </div>
@@ -363,9 +402,14 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
      * @return string Sanitized fact.
      */
     public function get_fact(): string {
+		// Vérification du consentement — aucun appel externe sans accord explicite de l'admin
+		if (!get_option('papyfavi_api_consent', false)) {
+			return (string) __('Chuck365 est désactivé. Veuillez autoriser la connexion au service externe dans les réglages du plugin.', 'papy3d-fact-viewer-for-chuck365');
+		}
+
 		$today = gmdate('Y-m-d');
-		$cached_fact = get_transient('chuck365_fact');
-		$cached_date = get_transient('chuck365_fact_date');
+		$cached_fact = get_transient('papyfavi_fact');
+		$cached_date = get_transient('papyfavi_fact_date');
 
 		if ($cached_fact && $cached_date === $today) {
 			return $cached_fact;
@@ -373,7 +417,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 
 		$args = [
 			'timeout'    => 10,
-			'user-agent' => 'Chuck365-Viewer/' . PAPY3D_FACT_VIEWER_FOR_CHUCK365_VERSION,
+			'user-agent' => 'Chuck365-Viewer/' . PAPYFAVI_VERSION,
 		];
 
 		$response = wp_remote_get('https://chuck365.fr/api.php', $args);
@@ -396,8 +440,8 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 			if (isset($data->success, $data->fact) && $data->success === true && !empty($data->fact)) {
 				// Sanitize AVANT de stocker en cache
 				$fact = wp_kses_post((string)$data->fact);
-				set_transient('chuck365_fact_date', $today, DAY_IN_SECONDS);
-				set_transient('chuck365_fact', $fact, DAY_IN_SECONDS);
+				set_transient('papyfavi_fact_date', $today, DAY_IN_SECONDS);
+				set_transient('papyfavi_fact', $fact, DAY_IN_SECONDS);
 				return $fact;
 			}
 		} catch (\JsonException $e) {
@@ -413,12 +457,34 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
      * @return void
      */
     public function ajax_fact(): void {
-		check_ajax_referer('chuck365_ajax_action', 'nonce');
+		check_ajax_referer('papyfavi_ajax_action', 'nonce');
 
 		wp_send_json_success([
 			'fact' => wp_kses_post($this->get_fact())
 		]);
 	}
+
+    /**
+     * Display admin notice if external service consent has not been given.
+     *
+     * @since 2.0.5
+     * @return void
+     */
+    public function consent_notice(): void {
+        if (get_option('papyfavi_api_consent', false)) {
+            return;
+        }
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        $settings_url = admin_url('admin.php?page=papyfavi');
+        printf(
+            '<div class="notice notice-warning"><p><strong>Papy3D Fact Viewer for Chuck365 :</strong> %s <a href="%s">%s</a></p></div>',
+            esc_html__('Le plugin est inactif. Pour afficher les Chuck Norris Facts, autorisez la connexion au service externe Chuck365.fr dans les', 'papy3d-fact-viewer-for-chuck365'),
+            esc_url($settings_url),
+            esc_html__('réglages du plugin.', 'papy3d-fact-viewer-for-chuck365')
+        );
+    }
 
     /**
      * Shortcode handler.
@@ -428,14 +494,14 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
      * @return string Rendered HTML output.
      */
     public function shortcode_render($atts): string {
-		wp_enqueue_style('chuck365-style');
+		wp_enqueue_style('papyfavi-style');
 
 		$atts = shortcode_atts([
-			'borderColor'   => get_option('chuck365_border_color', '#f39c12'),
-			'bgColor'       => get_option('chuck365_bg_color', '#ffffff'),
-			'textColor'     => get_option('chuck365_text_color', '#222222'),
-			'title'         => get_option('chuck365_text_title', 'Chuck Norris Fact du jour'),
-			'showCopyright' => get_option('chuck365_show_copyright', true),
+			'borderColor'   => get_option('papyfavi_border_color', '#f39c12'),
+			'bgColor'       => get_option('papyfavi_bg_color', '#ffffff'),
+			'textColor'     => get_option('papyfavi_text_color', '#222222'),
+			'title'         => get_option('papyfavi_text_title', 'Chuck Norris Fact du jour'),
+			'showCopyright' => get_option('papyfavi_show_copyright', true),
 		], $atts);
 
 		return $this->render([
@@ -456,15 +522,15 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
      */
     public function render(array $attributes = []): string {
 		// Re-sanitize TOUTES les variables, même celles des options
-		$border        = sanitize_hex_color((string)($attributes['borderColor']   ?? get_option('chuck365_border_color', '#f39c12')));
-		$bg            = sanitize_hex_color((string)($attributes['bgColor']       ?? get_option('chuck365_bg_color', '#ffffff')));
-		$color         = sanitize_hex_color((string)($attributes['textColor']     ?? get_option('chuck365_text_color', '#222222')));
-		$title         = esc_html((string)($attributes['title']         ?? get_option('chuck365_text_title', 'Chuck Norris Fact du jour')));
-		$showCopyright = isset($attributes['showCopyright']) ? (bool)$attributes['showCopyright'] : (bool)get_option('chuck365_show_copyright', true);
+		$border        = sanitize_hex_color((string)($attributes['borderColor']   ?? get_option('papyfavi_border_color', '#f39c12')));
+		$bg            = sanitize_hex_color((string)($attributes['bgColor']       ?? get_option('papyfavi_bg_color', '#ffffff')));
+		$color         = sanitize_hex_color((string)($attributes['textColor']     ?? get_option('papyfavi_text_color', '#222222')));
+		$title         = esc_html((string)($attributes['title']         ?? get_option('papyfavi_text_title', 'Chuck Norris Fact du jour')));
+		$showCopyright = isset($attributes['showCopyright']) ? (bool)$attributes['showCopyright'] : (bool)get_option('papyfavi_show_copyright', true);
 
 		$icon_url  = plugins_url('images/chuck.png', __FILE__);
 		$ajax_url  = esc_url(admin_url('admin-ajax.php'));
-		$nonce     = wp_create_nonce('chuck365_ajax_action');
+		$nonce     = wp_create_nonce('papyfavi_ajax_action');
 		$fact      = $this->get_fact(); // Déjà sanitizé dans get_fact()
 		$safe_fact = wp_kses_post($fact); // Redondant mais sûr
 		$unique_id = sanitize_html_class('chuck-title-' . bin2hex(random_bytes(4)));
